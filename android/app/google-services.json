@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "973813644910",
+    "project_id": "estetica-carol",
+    "storage_bucket": "estetica-carol.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973813644910:android:07cf13a6aa842113aff07f",
+        "android_client_info": {
+          "package_name": "com.estetica_carol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "973813644910-0fj43mrcr7pj68lf0rrm1uhr1acbktgl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKhMXZxqP47awEEX94OyK8-2ZPuvh4ECs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "973813644910-0fj43mrcr7pj68lf0rrm1uhr1acbktgl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

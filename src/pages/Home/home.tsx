@@ -1,25 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button, Alert } from 'react-native';
 import { AuthContext } from '../../api/contexts/auth.contexts';
+import ProductCardList from '../../components/ProductCardList/product-card-list.component';
 import { UserAuthContextType } from '../../constants/model/user.model';
 
 const Home: React.FC = ({}) => {
-  const { logout } = React.useContext(
-    AuthContext,
-  ) as UserAuthContextType;
-
-  function exit(){
-    Alert.alert('Usuario deslogando');
-    logout();
-  }
-
   return (
     <View style={styles.background}>
-      <Text>TELA HOME</Text>
-      <Button
-        onPress={() => exit()}
-        title="Logout"
-        color="#841584"/>
+      <ProductCardList></ProductCardList>
     </View>
   );
 };

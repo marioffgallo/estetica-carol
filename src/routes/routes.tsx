@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
 export type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
+  Home: undefined;
 };
 
 export default Routes;

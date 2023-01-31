@@ -9,7 +9,8 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Keyboard
+  Keyboard,
+  Image,
 } from 'react-native';
 import {AuthContext} from '../../api/contexts/auth.contexts';
 import {UserAuthContextType} from '../../constants/model/user.model';
@@ -33,6 +34,13 @@ const SignIn: React.FC = ({}) => {
   return (
     <View style={styles.background}>
       <KeyboardAvoidingView style={styles.container}>
+        <Image
+          source={{
+            uri: 'https://seeklogo.com/images/A/android-icon-logo-DB06FA8B39-seeklogo.com.png',
+          }}
+          style={styles.logo}
+        />
+
         <View style={styles.areaInput}>
           <TextInput
             style={styles.input}
@@ -88,6 +96,8 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginBottom: 15,
+    width: 100,
+    height: 100
   },
   areaInput: {
     flexDirection: 'row',

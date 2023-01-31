@@ -1,34 +1,58 @@
 import React from 'react';
 import {
+  View,
+  Text,
+  StyleSheet,
   ActivityIndicator,
   KeyboardAvoidingView,
-  StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
-  View,
   Keyboard,
   Alert
 } from 'react-native';
 import {AuthContext} from '../../api/contexts/auth.contexts';
 import {UserAuthContextType} from '../../constants/model/user.model';
 
-const SignUp: React.FC = ({}) => {
+const Profile: React.FC = () => {
   const [name, setName] = React.useState('');
   const [phone, setPhone] = React.useState('');
   const [email, setEmail] = React.useState('');
+
   const [password, setPassword] = React.useState('');
 
-  const {signUp, loadingAuth} = React.useContext(
+  const {user, loadingAuth, updateUser} = React.useContext(
     AuthContext,
   ) as UserAuthContextType;
 
-  function handleSignUp() {
-    if(email && password && name && phone) {
-      Keyboard.dismiss();
-      signUp(email, password, name, phone);
+  React.useEffect(() => {
+    async function loadUserInfo() {
+      setName(user?.name ?? '');
+      setPhone(user?.phone ?? '');
+      setEmail(user?.email ?? '');
+      setPassword('');
+    }
+
+    loadUserInfo();
+  }, []);
+
+  function handleUpdateUser(){
+    if(!password){
+      Alert.alert('Digite sua senha para prosseguir');
     } else {
-      Alert.alert('Dados Incompletos', 'Favor preencher todos os campos', [{text: 'OK', style:'cancel'}])
+      Alert.alert('Deseja atualizar seus dados cadastrais?', '', [
+        {
+          text: 'Não',
+          style: 'cancel'
+        },
+        {
+          text: 'Sim',
+          onPress: () => {
+            Keyboard.dismiss();
+            updateUser(email, name, phone, password);
+            setPassword('');
+          }
+        }
+      ])
     }
   }
 
@@ -38,7 +62,6 @@ const SignUp: React.FC = ({}) => {
         <View style={styles.areaInput}>
           <TextInput
             style={styles.input}
-            placeholderTextColor="rgba(255,255,255,0.20)"
             placeholder="Nome"
             autoCorrect={false}
             autoCapitalize="none"
@@ -50,9 +73,8 @@ const SignUp: React.FC = ({}) => {
         <View style={styles.areaInput}>
           <TextInput
             style={styles.input}
-            placeholderTextColor="rgba(255,255,255,0.20)"
             placeholder="Telefone"
-            keyboardType='numeric'
+            keyboardType="numeric"
             autoCorrect={false}
             autoCapitalize="none"
             value={phone}
@@ -63,7 +85,6 @@ const SignUp: React.FC = ({}) => {
         <View style={styles.areaInput}>
           <TextInput
             style={styles.input}
-            placeholderTextColor="rgba(255,255,255,0.20)"
             placeholder="E-mail"
             autoCorrect={false}
             autoCapitalize="none"
@@ -75,8 +96,7 @@ const SignUp: React.FC = ({}) => {
         <View style={styles.areaInput}>
           <TextInput
             style={styles.input}
-            placeholderTextColor="rgba(255,255,255,0.20)"
-            placeholder="Senha"
+            placeholder="Digite sua senha"
             autoCorrect={false}
             autoCapitalize="none"
             value={password}
@@ -85,11 +105,13 @@ const SignUp: React.FC = ({}) => {
           />
         </View>
 
-        <TouchableOpacity style={styles.submitButton} onPress={handleSignUp}>
+        <TouchableOpacity
+          style={styles.changePasswordButton}
+          onPress={handleUpdateUser}>
           {loadingAuth ? (
             <ActivityIndicator size={20} color="#fff" />
           ) : (
-            <Text style={styles.submitText}>Cadastrar</Text>
+            <Text style={styles.changePasswordText}>Atualizar perfil</Text>
           )}
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -100,29 +122,24 @@ const SignUp: React.FC = ({}) => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: '#131313',
   },
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logo: {
-    marginBottom: 15,
-  },
   areaInput: {
     flexDirection: 'row',
   },
   input: {
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    backgroundColor: 'rgba(255, 255, 222, 0.8)',
     width: '90%',
     fontSize: 17,
-    color: '#fff',
     marginBottom: 15,
     padding: 10,
     borderRadius: 7,
   },
-  submitButton: {
+  changePasswordButton: {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#00b94a',
@@ -131,10 +148,10 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     marginTop: 10,
   },
-  submitText: {
+  changePasswordText: {
     fontSize: 20,
     color: '#131313',
   },
 });
 
-export default SignUp;
+export default Profile;

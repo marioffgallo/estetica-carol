@@ -2,6 +2,7 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Home from '../pages/Home/home';
 import CustomDrawer from '../components/CustomDrawer/custom-drawer.component';
+import Profile from '../pages/Profile/profile';
 
 const AppDrawer = createDrawerNavigator();
 
@@ -26,6 +27,7 @@ const AppRoutes: React.FC = () => {
       }}
     >
       <AppDrawer.Screen name="Home" component={Home} />
+      <AppDrawer.Screen name="Profile" component={Profile} />
     </AppDrawer.Navigator>
   );
 };

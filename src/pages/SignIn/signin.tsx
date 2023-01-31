@@ -11,6 +11,7 @@ import {
   View,
   Keyboard,
   Image,
+  Alert,
 } from 'react-native';
 import {AuthContext} from '../../api/contexts/auth.contexts';
 import {UserAuthContextType} from '../../constants/model/user.model';
@@ -27,8 +28,12 @@ const SignIn: React.FC = ({}) => {
   ) as UserAuthContextType;
 
   function handleLogin() {
-    Keyboard.dismiss();
-    signIn(email, password);
+    if(email && password) {
+      Keyboard.dismiss();
+      signIn(email, password);
+    } else {
+      Alert.alert('Dados Incompletos', 'Favor preencher todos os campos', [{text: 'OK', style:'cancel'}])
+    }
   }
 
   return (

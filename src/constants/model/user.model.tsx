@@ -2,6 +2,7 @@ export interface User {
   uid: string,
   name: string,
   email: string,
+  phone: string | null,
   type: UserType
 }
 
@@ -15,7 +16,9 @@ export type UserAuthContextType = {
   user: User | null,
   loading: boolean,
   loadingAuth: boolean,
-  signUp: (email: string, password: string, name: string) => void,
+  signUp: (email: string, password: string, name: string, phone: string) => void,
   signIn: (email: string, password: string) => void,
   logout: () => void,
+  resetPasswordByEmail: (email: string) => void,
+  updateUser: (email: string, name: string, phone: string, password: string) => void,
 }

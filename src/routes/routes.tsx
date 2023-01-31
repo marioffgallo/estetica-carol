@@ -33,6 +33,7 @@ export type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
   Home: undefined;
+  Profile: undefined;
 };
 
 export default Routes;

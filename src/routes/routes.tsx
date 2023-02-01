@@ -1,6 +1,7 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {AuthContext} from '../api/contexts/auth.contexts';
+import { ProductCardData } from '../constants/model/product-card.model';
 import {UserAuthContextType} from '../constants/model/user.model';
 import AppRoutes from './app.routes';
 import AuthRoutes from './auth.routes';
@@ -34,6 +35,7 @@ export type RootStackParamList = {
   SignUp: undefined;
   Home: undefined;
   Profile: undefined;
+  ProductScreen: {productCard: ProductCardData};
 };
 
 export default Routes;
